@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main {
+  width: 100vw;
+  max-width: 1920px;
+  min-width: 300px;
+
+  margin: 0 auto;
+}

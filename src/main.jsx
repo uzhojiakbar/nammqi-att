@@ -1,10 +1,15 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import Root from "./root/root.jsx";
+import { BrowserRouter } from "react-router-dom";
+import { LanguageProvider } from "./context/LanguageContext.jsx";
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
-)
+    <BrowserRouter>
+      <LanguageProvider>
+        <Root />
+      </LanguageProvider>
+    </BrowserRouter>
+  </StrictMode>
+);
