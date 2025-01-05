@@ -186,6 +186,7 @@ const Direction = () => {
   const handleNavigate = (linkId) => {
     const nextImage = images.find((img) => img.id === linkId);
     setCurrentImage(nextImage || images[0]);
+    setLoading(true); // Rasm yuklanganida loadingni to'xtatish
   };
 
   const handleImageLoad = () => {
