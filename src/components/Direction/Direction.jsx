@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-import { Button } from "antd";
+import { Button, Spin } from "antd";
 import {
   DownOutlined,
   LeftOutlined,
@@ -139,8 +139,18 @@ const PointButton = styled(Button)`
   font-size: 18px;
 `;
 
+const LoadingWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+`;
+
 const Direction = () => {
   const [currentImage, setCurrentImage] = useState(images[0]);
+  const [loading, setLoading] = useState(true);
+
   const imageRef = useRef(null);
 
   const calculatePositions = () => {
@@ -157,7 +167,20 @@ const Direction = () => {
   const [positions, setPositions] = useState(calculatePositions());
 
   useEffect(() => {
-    setPositions(calculatePositions());
+    const handleResize = () => {
+      setPositions(calculatePositions());
+    };
+
+    // Initial positions calculation
+    handleResize();
+
+    // Add resize event listener
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup function to remove event listener
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, [currentImage]);
 
   const handleNavigate = (linkId) => {
@@ -165,24 +188,41 @@ const Direction = () => {
     setCurrentImage(nextImage || images[0]);
   };
 
+  const handleImageLoad = () => {
+    setLoading(false); // Rasm yuklanganida loadingni to'xtatish
+    setPositions(calculatePositions()); // Tugmalar joylashuvini yangilash
+  };
+
   return (
     <Wrapper>
       <ImageContainer>
+        {loading && (
+          <LoadingWrapper>
+            <Spin size="large" />
+          </LoadingWrapper>
+        )}
         <ImageElement
           ref={imageRef}
           src={currentImage.src}
           alt="Current View"
-          onLoad={() => setPositions(calculatePositions())}
+          onLoad={() => {
+            setPositions(calculatePositions());
+            handleImageLoad();
+          }}
         />
-        {currentImage.buttons.map((button, index) => (
-          <PointButton
-            key={index}
-            style={{ top: positions[index]?.top, left: positions[index]?.left }}
-            onClick={() => handleNavigate(button.linkId)}
-          >
-            {button.title}
-          </PointButton>
-        ))}
+        {!loading &&
+          currentImage.buttons.map((button, index) => (
+            <PointButton
+              key={index}
+              style={{
+                top: positions[index]?.top,
+                left: positions[index]?.left,
+              }}
+              onClick={() => handleNavigate(button.linkId)}
+            >
+              {button.title}
+            </PointButton>
+          ))}
       </ImageContainer>
     </Wrapper>
   );
