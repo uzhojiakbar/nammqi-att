@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Button } from "antd";
 import {
@@ -18,6 +18,8 @@ import img5 from "../../assets/dir/5.jpg";
 import img6 from "../../assets/dir/6.jpg";
 import img7 from "../../assets/dir/7.jpg";
 import img8 from "../../assets/dir/8.jpg";
+
+// O'zgarishsiz images array
 
 const images = [
   {
@@ -97,7 +99,6 @@ const images = [
     key: "sakkiz",
   },
 ];
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -111,8 +112,7 @@ const ImageContainer = styled.div`
   height: 90vh;
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
+
   @media (max-width: 768px) {
     height: 70vh;
   }
@@ -122,7 +122,7 @@ const ImageElement = styled.img`
   width: 100%;
   height: auto;
   max-height: 100%;
-  object-fit: contain; /* To ensure the full image is visible */
+  object-fit: contain;
 `;
 
 const PointButton = styled(Button)`
@@ -137,16 +137,28 @@ const PointButton = styled(Button)`
   align-items: center;
   justify-content: center;
   font-size: 18px;
-
-  /* Positioning of the button */
-  ${({ top, left }) => `
-    top: ${top}%;
-    left: ${left}%;
-  `}
 `;
 
 const Direction = () => {
   const [currentImage, setCurrentImage] = useState(images[0]);
+  const imageRef = useRef(null);
+
+  const calculatePositions = () => {
+    if (imageRef.current) {
+      const { offsetWidth, offsetHeight } = imageRef.current;
+      return currentImage.buttons.map((button) => ({
+        top: `${(button.top / 100) * offsetHeight - 25}px`,
+        left: `${(button.left / 100) * offsetWidth - 25}px`,
+      }));
+    }
+    return [];
+  };
+
+  const [positions, setPositions] = useState(calculatePositions());
+
+  useEffect(() => {
+    setPositions(calculatePositions());
+  }, [currentImage]);
 
   const handleNavigate = (linkId) => {
     const nextImage = images.find((img) => img.id === linkId);
@@ -156,12 +168,16 @@ const Direction = () => {
   return (
     <Wrapper>
       <ImageContainer>
-        <ImageElement src={currentImage.src} alt="Current View" />
+        <ImageElement
+          ref={imageRef}
+          src={currentImage.src}
+          alt="Current View"
+          onLoad={() => setPositions(calculatePositions())}
+        />
         {currentImage.buttons.map((button, index) => (
           <PointButton
             key={index}
-            top={button.top}
-            left={button.left}
+            style={{ top: positions[index]?.top, left: positions[index]?.left }}
             onClick={() => handleNavigate(button.linkId)}
           >
             {button.title}
