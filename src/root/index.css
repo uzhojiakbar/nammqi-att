@@ -3,8 +3,38 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  scroll-behavior: smooth;
 }
 
+:root {
+  --primery-color: #0025a2;
+
+  --admin-primery-color: #216bf4;
+
+  /* *BG */
+  --bg-color: #f7f8fc;
+
+  /* *TEXT */
+  --text-hover: #0025a2;
+  --text-black: #000;
+}
+
+*::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+  margin-right: 2px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 50px;
+  /* text-transform: ; */
+  margin-right: 2px;
+}
 .main {
   width: 100vw;
   max-width: 1920px;

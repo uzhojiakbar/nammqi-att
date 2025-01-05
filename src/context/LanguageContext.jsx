@@ -9,7 +9,7 @@ const translations = { ru, en, uz };
 
 export const LanguageProvider = React.memo(({ children }) => {
   const [language, setLanguageFunc] = useState(
-    localStorage.getItem("lang") || "uz"
+    localStorage.getItem("lang") || "ru"
   );
 
   const setLanguage = (lang) => {

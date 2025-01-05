@@ -7,9 +7,12 @@ import {
   StyledButton,
 } from "./style";
 import { useLanguage } from "../../context/LanguageContext";
+import { useNavigate } from "react-router-dom";
 
 const Body = () => {
   const { translate } = useLanguage();
+
+  const nav = useNavigate();
 
   return (
     <BodyContainer>
@@ -19,8 +22,12 @@ const Body = () => {
         {/* Kelajak kasbini <span>Elektronika</span> bilan o'rganing */}
       </Subtitle>
       <ButtonContainer>
-        <StyledButton type="primary">Yo'l xarita</StyledButton>
-        <StyledButton type="primary">Fakultet haqida</StyledButton>
+        <StyledButton onClick={() => nav("/direction")} type="primary">
+          {translate("map")}
+        </StyledButton>
+        <StyledButton onClick={() => nav("/about")} type="primary">
+          {translate("info")}
+        </StyledButton>
       </ButtonContainer>
     </BodyContainer>
   );
