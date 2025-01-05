@@ -145,6 +145,13 @@ const LoadingWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 20;
+  background-color: rgba(255, 255, 255, 0.4);
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Direction = () => {
