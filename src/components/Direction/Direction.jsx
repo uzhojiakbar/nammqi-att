@@ -19,7 +19,6 @@ import img6 from "../../assets/dir/6.jpg";
 import img7 from "../../assets/dir/7.jpg";
 import img8 from "../../assets/dir/8.jpg";
 
-// Rasmlar ro'yxati
 const images = [
   {
     id: 1,
@@ -107,18 +106,23 @@ const Wrapper = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  width: 100vw;
+  width: 100%;
+  max-width: 100vw;
   height: 90vh;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: 768px) {
+    height: 70vh;
+  }
 `;
 
 const ImageElement = styled.img`
-  max-width: 100%;
+  width: 100%;
+  height: auto;
   max-height: 100%;
-  object-fit: contain; /* Rasmni to'liq ko'rsatish */
+  object-fit: contain; /* To ensure the full image is visible */
 `;
 
 const PointButton = styled(Button)`
@@ -134,7 +138,7 @@ const PointButton = styled(Button)`
   justify-content: center;
   font-size: 18px;
 
-  /* Tugma joylashuvini aniqlash uchun */
+  /* Positioning of the button */
   ${({ top, left }) => `
     top: ${top}%;
     left: ${left}%;
