@@ -1,41 +1,102 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Button } from "antd";
+import {
+  DownOutlined,
+  LeftOutlined,
+  RightOutlined,
+  UpOutlined,
+} from "@ant-design/icons";
 
 import img1 from "../../assets/dir/1.jpg";
+import img1_1 from "../../assets/dir/1_1.jpg";
 import img2 from "../../assets/dir/2.jpg";
-import img22 from "../../assets/dir/22.jpg";
+import img22 from "../../assets/dir/2_2.jpg";
+import img3 from "../../assets/dir/3.jpg";
+import img4 from "../../assets/dir/4.jpg";
+import img5 from "../../assets/dir/5.jpg";
+import img6 from "../../assets/dir/6.jpg";
+import img7 from "../../assets/dir/7.jpg";
+import img8 from "../../assets/dir/8.jpg";
 
-// Rasmlar ro'yxati (o'z rasmlaringizni qo'shing)
+// Rasmlar ro'yxati
 const images = [
   {
     id: 1,
     src: img1,
-    buttons: [
-      {
-        // title: <i class="fa-solid fa-location-dot"></i>,
-        title: <>keyingi</>,
-        linkId: 2,
-      },
-    ],
+    buttons: [{ title: <UpOutlined />, top: 50, left: 50, linkId: 2 }],
     key: "bir",
   },
   {
     id: 2,
+    src: img1_1,
+    buttons: [
+      { title: <LeftOutlined />, top: 50, left: 10, linkId: 3 },
+      { title: <RightOutlined />, top: 50, left: 90, linkId: 3 },
+      { title: <DownOutlined />, top: 90, left: 50, linkId: 1 },
+    ],
+    key: "bir_bir",
+  },
+  {
+    id: 3,
     src: img2,
     buttons: [
-      {
-        title: <>oldingisi</>,
-        linkId: 1,
-      },
-      {
-        title: <>keyingisi</>,
-        linkId: 3,
-      },
+      { title: <LeftOutlined />, top: 50, left: 10, linkId: 4 },
+      { title: <RightOutlined />, top: 50, left: 90, linkId: 5 },
     ],
     key: "ikki",
   },
-  //   { id: 3, src: img22, directions: { up: 1, left: 2 }, key: "img3" },
+  {
+    id: 4,
+    src: img22,
+    buttons: [
+      { title: <LeftOutlined />, top: 50, left: 10, linkId: 6 },
+      { title: <RightOutlined />, top: 50, left: 90, linkId: 6 },
+    ],
+    key: "ikki_ikki",
+  },
+  {
+    id: 5,
+    src: img3,
+    buttons: [
+      { title: <LeftOutlined />, top: 50, left: 10, linkId: 4 },
+      { title: <RightOutlined />, top: 50, left: 90, linkId: 5 },
+    ],
+    key: "uch",
+  },
+  {
+    id: 6,
+    src: img4,
+    buttons: [{ title: <>Orqaga</>, top: 50, left: 50, linkId: 3 }],
+    key: "to'rt",
+  },
+  {
+    id: 7,
+    src: img5,
+    buttons: [{ title: <UpOutlined />, top: 50, left: 50, linkId: 6 }],
+    key: "besh",
+  },
+  {
+    id: 8,
+    src: img6,
+    buttons: [
+      { title: <LeftOutlined />, top: 50, left: 10, linkId: 7 },
+      { title: <RightOutlined />, top: 50, left: 90, linkId: 8 },
+    ],
+    key: "olti",
+  },
+  {
+    id: 9,
+    src: img7,
+    buttons: [{ title: <>Orqaga</>, top: 50, left: 50, linkId: 6 }],
+    key: "yetti",
+  },
+  {
+    id: 10,
+    src: img8,
+    buttons: [{ title: <>Orqaga</>, top: 50, left: 50, linkId: 6 }],
+    key: "sakkiz",
+  },
 ];
 
 const Wrapper = styled.div`
@@ -48,92 +109,60 @@ const Wrapper = styled.div`
 const ImageContainer = styled.div`
   width: 100vw;
   height: 90vh;
-  background-size: cover;
-  background-position: center;
-  background-image: ${({ image }) => `url(${image})`};
   position: relative;
-
-  .arrowContainer {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-
-    display: flex;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
-const ArrowButton = styled(Button)`
+const ImageElement = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Rasmni to'liq ko'rsatish */
+`;
+
+const PointButton = styled(Button)`
+  position: absolute;
   z-index: 10;
-  flex: 1;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  color: white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
 
-  font-size: 20px;
-  padding: 30px;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  text-transform: capitalize;
-  border-radius: 0 !important;
-
-  /* ${({ direction }) =>
-    direction === "up" &&
-    `
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+  /* Tugma joylashuvini aniqlash uchun */
+  ${({ top, left }) => `
+    top: ${top}%;
+    left: ${left}%;
   `}
-
-  ${({ direction }) =>
-    direction === "down" &&
-    `
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-  `}
-
-  ${({ direction }) =>
-    direction === "left" &&
-    `
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-  `}
-
-  ${({ direction }) =>
-    direction === "right" &&
-    `
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-  `} */
 `;
 
 const Direction = () => {
   const [currentImage, setCurrentImage] = useState(images[0]);
 
-  const handleNavigate = (v) => {
-    console.log(v);
-
-    const nextImage = images.find((img) => img.id === v.linkId);
-    console.log("NEEEEEEXT", nextImage);
-
+  const handleNavigate = (linkId) => {
+    const nextImage = images.find((img) => img.id === linkId);
     setCurrentImage(nextImage || images[0]);
   };
 
   return (
     <Wrapper>
-      <ImageContainer image={currentImage.src} key={currentImage.key}>
-        <div className="arrowContainer">
-          {currentImage.buttons.map((v, i) => {
-            return (
-              <ArrowButton
-                type="primary"
-                //   direction={}
-                onClick={() => handleNavigate(v)}
-                key={i}
-              >
-                {v?.title || <i class="fa-solid fa-arrow-right"></i>}
-              </ArrowButton>
-            );
-          })}
-        </div>
+      <ImageContainer>
+        <ImageElement src={currentImage.src} alt="Current View" />
+        {currentImage.buttons.map((button, index) => (
+          <PointButton
+            key={index}
+            top={button.top}
+            left={button.left}
+            onClick={() => handleNavigate(button.linkId)}
+          >
+            {button.title}
+          </PointButton>
+        ))}
       </ImageContainer>
     </Wrapper>
   );

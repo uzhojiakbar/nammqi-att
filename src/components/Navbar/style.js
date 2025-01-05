@@ -14,7 +14,6 @@ export const NavbarContainer = styled.div`
   left: 0;
 
   background-color: white;
-  border: 1px solid black;
 
   > div {
     height: 100%;
