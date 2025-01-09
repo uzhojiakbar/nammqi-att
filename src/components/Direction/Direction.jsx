@@ -18,24 +18,29 @@ import {
 
 import img1 from "../../assets/dir/111.jpg";
 import img1_1 from "../../assets/dir/1_1.jpg";
-import img2 from "../../assets/dir/2_2.jpg";
-import img22 from "../../assets/dir/2_2.jpg";
-import img3 from "../../assets/dir/3.jpg";
-import img4 from "../../assets/dir/4.jpg";
+import img2 from "../../assets/dir/2/zina1_2.jpg";
+import img22 from "../../assets/dir/2/3_rasm.jpg";
+import img3 from "../../assets/dir/2/zina3_4.jpg";
+import img4 from "../../assets/dir/2/4444.jpg";
 import img5 from "../../assets/dir/5.jpg";
+import img55 from "../../assets/dir/4.jpg";
 import img6 from "../../assets/dir/6.jpg";
 import img7 from "../../assets/dir/7.jpg";
 import img8 from "../../assets/dir/8.jpg";
+import img20 from "../../assets/dir/2/5555.jpg";
 
 const images = [
   {
     id: 1,
     src: img1,
+    text: "1-rasm",
     buttons: [{ icon: <UpOutlined />, position: "center", linkId: 2 }],
   },
   {
     id: 2,
     src: img1_1,
+    text: "2-rasm",
+
     buttons: [
       { icon: <LeftOutlined />, position: "left", linkId: 3 },
       { icon: <RightOutlined />, position: "right", linkId: 3 },
@@ -45,6 +50,8 @@ const images = [
   {
     id: 3,
     src: img2,
+    text: "3-rasm",
+
     buttons: [
       { icon: <LeftOutlined />, position: "left", linkId: 4 },
       { icon: <RightOutlined />, position: "right", linkId: 4 },
@@ -54,52 +61,84 @@ const images = [
   {
     id: 4,
     src: img22,
+    text: "4-rasm",
+
     buttons: [
-      { icon: <LeftOutlined />, position: "left", linkId: 5 },
+      { icon: <LeftOutlined />, position: "left", linkId: 20 },
       { icon: <RightOutlined />, position: "right", linkId: 5 },
       { icon: <DownOutlined />, position: "down", linkId: 3 },
     ],
   },
   {
+    id: 20,
+    src: img20,
+    text: "5-rasm",
+
+    buttons: [{ icon: <LeftOutlined />, position: "center", linkId: 4 }],
+  },
+  {
     id: 5,
     src: img3,
+    text: "6-rasm",
+
     buttons: [
       { icon: <LeftOutlined />, position: "left", linkId: 6 },
-      { icon: <RightOutlined />, position: "right", linkId: 7 },
+      { icon: <RightOutlined />, position: "right", linkId: 6 },
       { icon: <DownOutlined />, position: "down", linkId: 4 },
     ],
   },
   {
     id: 6,
     src: img4,
-    buttons: [{ icon: <LeftOutlined />, position: "center", linkId: 5 }],
-  },
-  {
-    id: 7,
-    src: img5,
+    text: "7-rasm",
+
     buttons: [
-      { icon: <UpOutlined />, position: "center", linkId: 8 },
+      { icon: <LeftOutlined />, position: "left", linkId: 7 },
+      { icon: <RightOutlined />, position: "right", linkId: 8 },
       { icon: <DownOutlined />, position: "down", linkId: 5 },
     ],
   },
   {
+    id: 7,
+    src: img55,
+    text: "8-rasm",
+
+    buttons: [{ icon: <LeftOutlined />, position: "center", linkId: 6 }],
+  },
+  {
     id: 8,
-    src: img6,
+    src: img5,
+    text: "9-rasm",
+
     buttons: [
-      { icon: <LeftOutlined />, position: "left", linkId: 9 },
-      { icon: <RightOutlined />, position: "right", linkId: 10 },
-      { icon: <DownOutlined />, position: "down", linkId: 7 },
+      { icon: <UpOutlined />, position: "center", linkId: 9 },
+      { icon: <DownOutlined />, position: "down", linkId: 6 },
     ],
   },
   {
     id: 9,
-    src: img7,
-    buttons: [{ icon: <DownOutlined />, position: "down", linkId: 8 }],
+    src: img6,
+    text: "10-rasm",
+
+    buttons: [
+      { icon: <LeftOutlined />, position: "left", linkId: 10 },
+      { icon: <RightOutlined />, position: "right", linkId: 11 },
+      { icon: <DownOutlined />, position: "down", linkId: 8 },
+    ],
   },
   {
+    text: "11-rasm",
+
     id: 10,
+    src: img7,
+    buttons: [{ icon: <DownOutlined />, position: "center", linkId: 9 }],
+  },
+  {
+    id: 11,
+    text: "12-rasm",
+
     src: img8,
-    buttons: [{ icon: <DownOutlined />, position: "down", linkId: 8 }],
+    buttons: [{ icon: <DownOutlined />, position: "center", linkId: 9 }],
   },
 ];
 
@@ -130,7 +169,7 @@ const ScrollableContainer = styled.div`
 
   max-width: 90vw;
   width: 100%;
-  max-height: 80vh;
+  max-height: 90vh;
   height: fit-content;
 
   background-color: white;
@@ -141,20 +180,58 @@ const ScrollableContainer = styled.div`
   transition: all 0.5s ease;
 
   &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 4px;
+    height: 4px;
+    cursor: pointer;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #3b82f6;
     border-radius: 4px;
   }
   &::-webkit-scrollbar-track {
     background-color: #f0f0f0;
   }
 
+  .text {
+    position: absolute;
+    bottom: 20vh;
+    width: 100%;
+    max-width: 70vw;
+    text-align: center;
+    font-size: 42px;
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    -webkit-text-stroke: 1px black;
+    text-transform: capitalize;
+    font-weight: 900;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.5) 100%
+    );
+
+    padding: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+
+    @media (max-width: 768px) {
+      font-size: 24px;
+      padding: 5px 0;
+    }
+  }
+
   @media (max-width: 768px) {
     max-width: 100vw;
     max-height: 60vh;
+
+    .text {
+      position: absolute;
+      bottom: 10vh;
+      color: #000;
+      -webkit-text-stroke: 1px white !important;
+    }
   }
 `;
 
@@ -246,7 +323,6 @@ const NavigationButton = styled.button`
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.8);
-    transform: scale(1.1);
   }
 
   ${(props) =>
@@ -434,13 +510,18 @@ const Direction = () => {
 
       <ScrollableContainer fullView={fullView}>
         {!fullView && (
-          <ImageElement
-            src={currentImage.src}
-            alt="Navigation View"
-            fullView={false}
-            rotation={rotation}
-            scale={scale}
-          />
+          <>
+            <ImageElement
+              src={currentImage.src}
+              alt="Navigation View"
+              fullView={false}
+              rotation={rotation}
+              scale={scale}
+            />
+            <div className="text">
+              {currentImage?.text || "Sanoatni Axborotlashtirirish"}{" "}
+            </div>
+          </>
         )}
 
         <NavigationButton position={"right top"} onClick={toggleFullView}>
