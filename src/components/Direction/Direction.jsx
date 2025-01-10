@@ -33,13 +33,13 @@ const images = [
   {
     id: 1,
     src: img1,
-    text: "1-rasm",
+    text: "1-Rasm. Institutning 1-etaji. Muhandislik kommunikatsiyasi fakulteti",
     buttons: [{ icon: <UpOutlined />, position: "center", linkId: 2 }],
   },
   {
     id: 2,
     src: img1_1,
-    text: "2-rasm",
+    text: "2-Rasm. Rektorat",
 
     buttons: [
       { icon: <LeftOutlined />, position: "left", linkId: 3 },
@@ -50,7 +50,7 @@ const images = [
   {
     id: 3,
     src: img2,
-    text: "3-rasm",
+    text: "3-rasm. 2-qavatdan 3-qavatga Kimyo muhandisligi kafedrasiga chiqish",
 
     buttons: [
       { icon: <LeftOutlined />, position: "left", linkId: 4 },
@@ -61,8 +61,7 @@ const images = [
   {
     id: 4,
     src: img22,
-    text: "4-rasm",
-
+    text: "4-rasm. Kimyo muhandisligi kafedrasi",
     buttons: [
       { icon: <LeftOutlined />, position: "left", linkId: 20 },
       { icon: <RightOutlined />, position: "right", linkId: 5 },
@@ -72,14 +71,14 @@ const images = [
   {
     id: 20,
     src: img20,
-    text: "5-rasm",
+    text: "5-rasm. Kimyo muhandisligi kafedrasi",
 
     buttons: [{ icon: <LeftOutlined />, position: "center", linkId: 4 }],
   },
   {
     id: 5,
     src: img3,
-    text: "6-rasm",
+    text: "6-rasm. 3-qavatdan 4-qavat Sanoatni axborotlashtirish fakulteti va Axborot tizimlari va texnologiyalari kafedrasiga chiqish.",
 
     buttons: [
       { icon: <LeftOutlined />, position: "left", linkId: 6 },
@@ -90,7 +89,7 @@ const images = [
   {
     id: 6,
     src: img4,
-    text: "7-rasm",
+    text: "7-rasm. Sanoatni axborotlashtirish fakulteti va Axborot tizimlari va texnologiyalari kafedrasi.",
 
     buttons: [
       { icon: <LeftOutlined />, position: "left", linkId: 7 },
@@ -101,14 +100,14 @@ const images = [
   {
     id: 7,
     src: img55,
-    text: "8-rasm",
+    text: "8-rasm. Axborot tizimlari va texnologiyalari kafedrasi.",
 
     buttons: [{ icon: <LeftOutlined />, position: "center", linkId: 6 }],
   },
   {
     id: 8,
     src: img5,
-    text: "9-rasm",
+    text: "9-rasm. Sanoatni axborotlashtirish fakulteti.",
 
     buttons: [
       { icon: <UpOutlined />, position: "center", linkId: 9 },
@@ -118,7 +117,7 @@ const images = [
   {
     id: 9,
     src: img6,
-    text: "10-rasm",
+    text: "10-rasm. Sanoatni axborotlashtirish fakulteti dekanati.",
 
     buttons: [
       { icon: <LeftOutlined />, position: "left", linkId: 10 },
@@ -127,7 +126,7 @@ const images = [
     ],
   },
   {
-    text: "11-rasm",
+    text: "11-rasm. Sanoatni axborotlashtirish fakulteti dekani Ozoda Abdullayeva xonasi",
 
     id: 10,
     src: img7,
@@ -135,7 +134,7 @@ const images = [
   },
   {
     id: 11,
-    text: "12-rasm",
+    text: "12-rasm Sanoatni axborotlashtirish fakulteti tyutorlar xonasi",
 
     src: img8,
     buttons: [{ icon: <DownOutlined />, position: "center", linkId: 9 }],
@@ -191,47 +190,47 @@ const ScrollableContainer = styled.div`
   &::-webkit-scrollbar-track {
     background-color: #f0f0f0;
   }
+  user-select: none;
 
   .text {
+    user-select: none;
     position: absolute;
     bottom: 20vh;
     width: 100%;
-    max-width: 70vw;
+    max-width: 80vw; /* Matnni kengaytirish */
     text-align: center;
-    font-size: 42px;
+    font-size: 40px; /* Matnni kattalashtirish */
     color: #ffffff;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    -webkit-text-stroke: 1px black;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6); /* Matn atrofida yuqori chiroyli soya */
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.6); /* Matnni bir oz qoraytirish */
     text-transform: capitalize;
     font-weight: 900;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.5) 0%,
-      rgba(255, 255, 255, 0.5) 100%
+      rgba(255, 255, 255, 0.2) 100%
     );
-
-    padding: 10px 0;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 12px 0; /* To'liq matnni o'rab olish uchun yuqoridan va pastdan joy ajratish */
+    border-radius: 15px; /* Chekkalarni yumshatish */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Matnni yanada chiroyli qilish uchun soyali effekt */
     transition: all 0.3s ease-in-out;
+    line-height: 1.5; /* Matn oralig'ini tartibga solish */
+    letter-spacing: 1px; /* Harflar orasidagi masofani ochish */
 
     @media (max-width: 768px) {
-      font-size: 24px;
-      padding: 5px 0;
+      padding: 10px 0;
+      font-size: 18px;
+      position: absolute;
+      bottom: 10vh;
+      color: #000;
+      font-weight: 100 !important;
     }
   }
 
   @media (max-width: 768px) {
     max-width: 100vw;
     max-height: 60vh;
-
-    .text {
-      position: absolute;
-      bottom: 10vh;
-      color: #000;
-      -webkit-text-stroke: 1px white !important;
-    }
   }
 `;
 
